@@ -4,7 +4,7 @@
 
 Made with ❤ at [@outlandish](http://www.twitter.com/outlandish)
 
-<a href="http://badge.fury.io/js/wp-api-response-modifier"><img alt="npm version" src="https://badge.fury.io/js/wp-api-response-modifier.svg"></a>
+<a href="http://badge.fury.io/js/wp-api-response-modify"><img alt="npm version" src="https://badge.fury.io/js/wp-api-response-modify.svg"></a>
 [![js-standard-style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg)](http://standardjs.com/)
 
 Makes response JSON from the WP API sensible. By default it...
@@ -19,17 +19,17 @@ See the [list of effects](#effects) for more.
 ## Install
 
 ```sh
-npm install --save wp-api-response-modifier
+npm install --save wp-api-response-modify
 ```
 
 ## Import
 
 ```js
 // ES2015
-import modify from 'wp-api-response-modifier'
+import modify from 'wp-api-response-modify'
 
 // CommonJS
-var modify = require('wp-api-response-modifier')
+var modify = require('wp-api-response-modify')
 ```
 
 ## Usage
@@ -94,4 +94,4 @@ If you're not sure how, check out Kent C. Dodds'
 
 ## Author & License
 
-`wp-api-response-modifier` was created by [Outlandish](https://twitter.com/outlandish) and is released under the MIT license.
+`wp-api-response-modify` was created by [Outlandish](https://twitter.com/outlandish) and is released under the MIT license.
