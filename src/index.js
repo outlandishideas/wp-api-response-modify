@@ -27,13 +27,13 @@ module.exports = function modify (response, effects) {
     throw new Error('Expecting effects to be an array or function, got ' + typeof effects + '.')
   }
 
-  effects = effects ?
-    !(effects instanceof Array) ? [effects] : effects
+  effects = effects
+    ? !(effects instanceof Array) ? [effects] : effects
     : allEffects
 
   effects.forEach(function (effect, i) {
     if (typeof effect !== 'function') {
-      throw new Error('Effect at index ' + i + ' is not a function, got ' +  typeof effect + '.')
+      throw new Error('Effect at index ' + i + ' is not a function, got ' + typeof effect + '.')
     }
   })
 
