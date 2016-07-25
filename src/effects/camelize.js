@@ -1,6 +1,6 @@
 'use strict'
 
-var _camelize = require('camelize')
+import { camelizeKeys } from 'humps'
 
 /**
  * Transform all property names to camel-case.
@@ -9,5 +9,5 @@ var _camelize = require('camelize')
  * @returns {Object}
  */
 module.exports = function camelize (original, flattened) {
-  return _camelize(flattened)
+  return camelizeKeys(flattened)
 }
