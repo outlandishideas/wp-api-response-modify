@@ -1,4 +1,4 @@
-# wp-api-response-modifier
+# wp-api-response-modify
 
 > Makes WP API response JSON sensible
 
