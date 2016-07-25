@@ -8,5 +8,7 @@ test('camelize', (t) => {
   const result = effect(postJson, merge({}, postJson))
 
   t.equal(Boolean(result.featuredMedia), true)
+  t.equal(Boolean(result.links), true)
+
   t.end()
 })

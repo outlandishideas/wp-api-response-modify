@@ -1,6 +1,6 @@
 'use strict'
 
-import { camelizeKeys } from 'humps'
+var camelizeKeys = require('humps').camelizeKeys
 
 /**
  * Transform all property names to camel-case.
