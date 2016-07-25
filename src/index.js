@@ -23,7 +23,7 @@ var allEffects = Object.keys(effectsHash).reduce(function (allEffects, key) {
  * @returns {Object} Modified response JSON
  */
 module.exports = function modify (response, effects) {
-  if (typeof effects !== 'function' && !(effects instanceof Array)) {
+  if (effects && (typeof effects !== 'function' && !(effects instanceof Array))) {
     throw new Error('Expecting effects to be an array or function, got ' + typeof effects + '.')
   }
 

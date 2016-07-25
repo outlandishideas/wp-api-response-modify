@@ -1,6 +1,6 @@
 {
   "name": "wp-api-response-modify",
-  "version": "0.0.5",
+  "version": "0.1.0",
   "description": "Makes WP API response JSON sensible",
   "main": "src/index.js",
   "scripts": {

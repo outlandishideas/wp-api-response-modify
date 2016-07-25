@@ -29,6 +29,11 @@ test('throws if an effect is not a function', (t) => {
   }
 })
 
+test('does not throw if effects not given', (t) => {
+  modify(postJson)
+  t.end()
+})
+
 test('accepts effects fn', (t) => {
   const hasRendered = ['guid', 'title', 'content', 'excerpt']
   const result = modify(postJson, modify.effects.flattenRenderedProps)
