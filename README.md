@@ -57,7 +57,7 @@ Example:
 
 ```js
 { content: { rendered: 'content string' } }
-=>
+// becomes...
 { content: 'content string' }
 ```
 
@@ -69,7 +69,7 @@ Example:
 
 ```js
 { author: 12, _embedded: { author: { id: 12, ... } } }
-=>
+// becomes...
 { author: { id: 12, ... } }
 ```
 
