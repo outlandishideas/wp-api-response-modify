@@ -11,7 +11,7 @@ module.exports = function flattenRenderedProps (original, flattened) {
     if (
       original[key] &&
       Object.keys(original[key]).length === 1 &&
-      original[key].rendered
+      typeof original[key].rendered === 'string'
     ) {
       flattened[key] = original[key].rendered
     }
