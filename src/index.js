@@ -38,7 +38,7 @@ module.exports = function modify (response, effects) {
   })
 
   if (response instanceof Array) {
-    return response.map(modify,effects)
+    return response.map(modify, effects)
   }
 
   return effects.reduce(function (flattened, effect) {
