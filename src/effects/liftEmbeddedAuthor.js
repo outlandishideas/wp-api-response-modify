@@ -1,7 +1,5 @@
 'use strict'
 
-var find = require('lodash.find')
-
 /**
  * Replace the author field with the embedded author entity.
  * @param {Object} original
@@ -9,11 +7,18 @@ var find = require('lodash.find')
  * @returns {Object}
  */
 module.exports = function liftEmbeddedAuthor (original, flattened) {
-  if (original.author && typeof original._embedded !== 'undefined') {
-    var author = find(original._embedded.author, function (author) {
-      return author.id === original.author
-    })
+  if (!original) {
+    return flattened
+  }
 
+  if (
+    original.author
+    && typeof original._embedded !== 'undefined'
+    && Array.isArray(original._embedded.author)
+  ) {
+    const author = original._embedded.author.find((a) => {
+      return a.id === original.author
+    })
     if (author) {
       flattened.author = author
     }

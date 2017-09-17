@@ -1,6 +1,6 @@
 'use strict'
 
-var camelizeKeys = require('humps').camelizeKeys
+const {camelizeKeys} = require('humps')
 
 /**
  * Transform all property names to camel-case.
@@ -9,5 +9,8 @@ var camelizeKeys = require('humps').camelizeKeys
  * @returns {Object}
  */
 module.exports = function camelize (original, flattened) {
+  if (!original) {
+    return flattened
+  }
   return camelizeKeys(flattened)
 }

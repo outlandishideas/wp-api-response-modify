@@ -7,15 +7,19 @@
  * @returns {Object}
  */
 module.exports = function flattenRenderedProps (original, flattened) {
-  Object.keys(original).forEach(function (key) {
+  if (!original) {
+    return flattened
+  }
+
+  for (const key in original) {
     if (
-      original[key] &&
-      Object.keys(original[key]).length === 1 &&
-      typeof original[key].rendered === 'string'
+      typeof original[key] === 'object'
+      && Object.keys(original[key]).length === 1
+      && typeof original[key].rendered === 'string'
     ) {
       flattened[key] = original[key].rendered
     }
-  })
+  }
 
   return flattened
 }

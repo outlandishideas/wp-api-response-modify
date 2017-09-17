@@ -9,10 +9,10 @@ Made with ❤ at [@outlandish](http://www.twitter.com/outlandish)
 
 Makes response JSON from the WP API sensible. By default it...
 
-- transforms properties to camel-case,
-- flattens objects with a single property `rendered`,
-- lifts embedded entities (author, featured media, etc.),
-- removes the `_links` property.
+- transforms properties to camel-case
+- flattens objects with a single property `rendered`
+- lifts embedded entities (author, featured media, etc.)
+- removes the `_links` property
 
 See the [list of effects](#effects) for more.
 
@@ -39,7 +39,7 @@ var modify = require('wp-api-response-modify')
 Make a WP API response sensible.
 
 - __response__ {Object} Response from WP-API
-- [__effects__] {Array|Function} _(optional)_ One or more effects to apply to the response
+- [__effects__] {Array} _(optional)_ Effects to apply to the response
 
 Returns the modified response.
 

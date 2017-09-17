@@ -1,20 +1,33 @@
 {
   "name": "wp-api-response-modify",
-  "version": "2.0.1",
+  "version": "3.0.0",
   "description": "Makes WP API response JSON sensible",
-  "main": "src/index.js",
+  "main": "bin/index.js",
+  "jsnext:main": "src/index.js",
   "scripts": {
     "lint": "standard src/*",
-    "test": "node test",
-    "prepublish": "npm run lint && npm run test"
+    "test": "jest",
+    "build": "babel src --out-dir bin",
+    "prepublishOnly": "npm run lint && npm test && npm run build"
   },
   "dependencies": {
     "humps": "^1.0.0",
     "lodash.find": "^4.4.0",
-    "lodash.merge": "^4.4.0"
+    "lodash.merge": "^4.4.0",
+    "lodash.values": "^4.3.0"
   },
   "devDependencies": {
-    "standard": "^7.1.2",
-    "tape": "^4.6.0"
+    "babel": "^6.23.0",
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.0",
+    "babel-preset-env": "^1.6.0",
+    "jest": "^21.1.0",
+    "standard": "^7.1.2"
+  },
+  "jest": {
+    "testRegex": "test",
+    "testPathIgnorePatterns": [
+      "fixtures"
+    ]
   }
 }

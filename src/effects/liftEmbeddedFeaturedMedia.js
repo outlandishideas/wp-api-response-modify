@@ -1,8 +1,8 @@
 'use strict'
 
-var find = require('lodash.find')
+const find = require('lodash.find')
 
-var fmKey = 'wp:featuredmedia'
+const fmKey = 'wp:featuredmedia'
 
 /**
  * Replace the `featured_media` field with the value of the embedded `wp:featuredmedia`.
@@ -11,11 +11,15 @@ var fmKey = 'wp:featuredmedia'
  * @returns {Object}
  */
 module.exports = function liftEmbeddedFeaturedMedia (original, flattened) {
-  var hasFeaturedMedia = original.featured_media
-  var hasEmbeddedFeaturedMedia = original._embedded && original._embedded[fmKey]
+  if (!original) {
+    return flattened
+  }
+
+  const hasFeaturedMedia = original.featured_media
+  const hasEmbeddedFeaturedMedia = original._embedded && original._embedded[fmKey]
 
   if (hasEmbeddedFeaturedMedia && hasFeaturedMedia) {
-    flattened.featured_media = find(flattened._embedded[fmKey], function (media) {
+    flattened.featured_media = find(flattened._embedded[fmKey], (media) => {
       return media.id === original.featured_media
     })
   }
