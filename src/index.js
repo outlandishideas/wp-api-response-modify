@@ -32,7 +32,7 @@ function modify (response, effects = values(effectsHash)) {
 
   return effects.reduce((flattened, effect) => {
     if (typeof effect !== 'function') {
-      throw new Error(`Effect is not a function`)
+      throw new Error('Effect is not a function')
     }
     return effect(response, flattened)
   }, merge({}, response))
