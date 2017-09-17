@@ -1,8 +1,11 @@
 'use strict'
 
-var merge = require('lodash.merge')
+const merge = require('lodash.merge')
+const values = require('lodash.values')
 
-var effectsHash = {
+module.exports = modify
+
+const effectsHash = module.exports.effects = {
   removeLinks: require('./effects/removeLinks'),
   flattenRenderedProps: require('./effects/flattenRenderedProps'),
   liftEmbeddedAuthor: require('./effects/liftEmbeddedAuthor'),
@@ -11,39 +14,26 @@ var effectsHash = {
   camelize: require('./effects/camelize')
 }
 
-var allEffects = Object.keys(effectsHash).reduce(function (allEffects, key) {
-  allEffects.push(effectsHash[key])
-  return allEffects
-}, [])
-
 /**
  * Make a WP API response JSON sensible.
- * @param {Object} response Reponse JSON
- * @param {Array|Function} [effects] Effect or effects to apply to the response, default all effects
+ * @param {Object|Array} response WP API response JSON
+ * @param {Array} [effects] Effects to apply to the response, defaults to all effects
  * @returns {Object} Modified response JSON
  */
-module.exports = function modify (response, effects) {
-  if (effects && (typeof effects !== 'function' && !(effects instanceof Array))) {
-    throw new Error('Expecting effects to be an array or function, got ' + typeof effects + '.')
+function modify (response, effects = values(effectsHash)) {
+  if (!Array.isArray(effects)) {
+    throw new Error(`Expecting effects to be an array, got "${typeof effects}".`)
+  } else if (!response || typeof response !== 'object') {
+    throw new Error(`Expecting response to be an array or object, got "${typeof response}".`)
   }
 
-  effects = effects
-    ? !(effects instanceof Array) ? [effects] : effects
-    : allEffects
+  response = Array.isArray(response)
+    ? response.map((r) => modify(r, effects)) : response
 
-  effects.forEach(function (effect, i) {
+  return effects.reduce((flattened, effect) => {
     if (typeof effect !== 'function') {
-      throw new Error('Effect at index ' + i + ' is not a function, got ' + typeof effect + '.')
+      throw new Error(`Effect is not a function`)
     }
-  })
-
-  if (response instanceof Array) {
-    return response.map((response) => modify(response, effects))
-  }
-
-  return effects.reduce(function (flattened, effect) {
     return effect(response, flattened)
   }, merge({}, response))
 }
-
-module.exports.effects = effectsHash
